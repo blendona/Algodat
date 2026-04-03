@@ -7,7 +7,7 @@
 \pagestyle{empty}
 
 \title{Word ladders report}
-\author{Author 1 and Author 2}
+\author{Petter Jonasson and Blendona Ibrahimi}
 
 \begin{document}
   \maketitle
@@ -15,9 +15,27 @@
   \section{Results}
 
   \todo[inline]{Briefly comment the results, did the script say all your solutions were correct? Approximately how long time does it take for the program to run on the largest input? What takes the majority of the time?}
+  # The script said that all our solutions were correct. 
+
+  # The overall running time is O(N² × W + P × (N + E)) Where N is the number of words, W is the length of the words, P is the number of pairs, and E is the number of edges in the graph.
+
+  # The program takes approximately 0.5 seconds to run on the largest input. The majority of the time is most likely taken by the createGraph function, which has a running time of O(N² × W).
+  
+  # However, the BFS function is called for each pair of start and goal nodes, and the pairs are as many as the words, which also takes a significant amount of time. 
+  
+  # If the Edges are more than 20 000 the BFS function will take more time than the createGraph function, since the running time of BFS is O(N + E) where N is the number of nodes and E is the number of edges in the graph.
+  
 
   \section{Implementation details}
 
   \todo[inline]{How did you implement the solution? Which data structures were used? Which modifications to these data structures were used? What is the overall running time? Why?}
+  
+  # Dictionary for the graph: each word is a key and its value is a list of neighbouring words. This allows O(1) lookup of a node's neighbours during BFS.
+  
+  # List as a queue in BFS: stores tuples of (word, distance) so we can track how far we are from the start node as we explore.
+
+  # Dictionary for visited: maps each word to 0 (unvisited) or its distance from start, allowing O(1) lookup to check if a node has been visited.
+
+  # The overall running time is O(N² × W + P × (N + E)) Where N is the number of words, W is the length of the words, P is the number of pairs, and E is the number of edges in the graph.
 
 \end{document}
