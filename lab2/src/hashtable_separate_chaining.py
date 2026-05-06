@@ -1,5 +1,7 @@
 import sys 
 
+# time python3 src/hashtable_separate_chaining.py < data/secret/7huge.in 
+
 class _Node:
     """
     A node in a single linked list
@@ -25,7 +27,7 @@ class HashTable:
 
     """
     _UPPER_LOAD = 1.0  
-    _LOWER_LOAD = 0.25 
+    _LOWER_LOAD = 0.25
 
     #TODO only expanitory for Petter, maybe delete afterwards
     # Minimum array size: never shrink below this so we don't
@@ -42,7 +44,7 @@ class HashTable:
         """
         Compute the hash value of the key and map it to a bucket index.
         """
-        return abs(hash(key)) % self._m         #Python's built-in hash func can return negative values
+        return abs(hash(key)) % self._m         #Python's built-in hash func can return negative values, abs(hash(key)) & (self._m - 1)
     
 
     def _find(self, key):
