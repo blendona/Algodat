@@ -1,6 +1,6 @@
 import sys 
 
-# time python3 src/hashtable_separate_chaining.py < data/secret/7huge.in 
+# time python3 reference.py < data/secret/7huge.in 
 
 class _Node:
     """
@@ -16,7 +16,6 @@ class HashTable:
     """
     Hash map implemented with separate chaining,
     where each bucket is a linked list of key-value pairs.
-    #TODO  ######################## MAYBE DELETE ######################### 
         ht[key]          → get value (raises KeyError if missing)
         ht[key] = value  → insert or update
         del ht[key]      → delete (raises KeyError if missing)
@@ -26,10 +25,10 @@ class HashTable:
         len(ht)          → number of pairs
 
     """
-    _UPPER_LOAD = 1.0  
+    _UPPER_LOAD = 1
     _LOWER_LOAD = 0.25
 
-    #TODO only expanitory for Petter, maybe delete afterwards
+
     # Minimum array size: never shrink below this so we don't
     # thrash on tiny tables (resizing often, shrinking and growing).
     _MIN_SIZE = 1
@@ -44,6 +43,7 @@ class HashTable:
         """
         Compute the hash value of the key and map it to a bucket index.
         """
+        #return abs(hash(key)) & (self._m - 1)
         return abs(hash(key)) % self._m         #Python's built-in hash func can return negative values, abs(hash(key)) & (self._m - 1)
     
 
@@ -130,6 +130,7 @@ class HashTable:
         self._n -= 1
         #check load factor lower bound (but keep minimum size)
         new_m = self._m // 2
+
         if (new_m >= self._MIN_SIZE and self._n / self._m < self._LOWER_LOAD):
             self._resize(new_m)
 
@@ -182,23 +183,6 @@ class HashTable:
     def __len__(self):
         return self._n
     
-
-    #TODO delete afterward
-    # -----------------------------------------------------------
-    # Debug helper – useful during development 
-    # -----------------------------------------------------------
-    def _debug_print(self):
-        print(f"  m={self._m}, n={self._n}, α={self._n/self._m:.2f}")
-        for i, head in enumerate(self._table):
-            if head is not None:
-                chain = []
-                curr = head
-                while curr:
-                    chain.append(f"({curr.key!r}:{curr.value})")
-                    curr = curr.next
-                print(f"  [{i}] -> " + " -> ".join(chain))
-
-
 def main():
     d = HashTable()
     i = 0
@@ -206,9 +190,6 @@ def main():
     for line in sys.stdin:
         word = line.strip()
 
-        #TODO delete this statement?
-        #if not word:
-        #    continue
 
         is_present = word in d        #uses __contains__
         remove_it  = (i % 16 == 0)

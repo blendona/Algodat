@@ -71,7 +71,7 @@ def closest_pair_rec(px, py):
 
     Parameters:
         px : points sorted by x
-        py : the sa,e points sorted by y 
+        py : the same points sorted by y 
 
     Returns:
         The minimum distance among all pairs in this subproblem.
@@ -92,7 +92,7 @@ def closest_pair_rec(px, py):
     # create a set for the left half points and check membership for each point in py (O(1)). 
     # not checking with points itself due to potential duplicates
     left_ids = {id(p) for p in left_half_px}
-    left_half_py = [p for p in py if     id(p) in left_ids]
+    left_half_py = [p for p in py if id(p) in left_ids]
     right_half_py = [p for p in py if not id(p) in left_ids]
 
     delta_left = closest_pair_rec(left_half_px,  left_half_py)
@@ -130,7 +130,7 @@ def closest_pair(points):
 def main():
     data = sys.stdin.buffer.read().split()
     idx  = 0
-    n      = int(data[idx]); idx += 1
+    n = int(data[idx]); idx += 1
     points = []
     for _ in range(n):
         x = int(data[idx]); idx += 1

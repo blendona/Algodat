@@ -3,9 +3,9 @@ import sys
 
 def make_sets(n):
     """
-    Initialise n singleton sets.
+    Initialise n single sets.
     Nodes are 1-indexed (matching the problem input).
-    
+    size: number of nodes in the tree with one arbitrary root
     """
     #parent[i] = i means i is its own root
     parent = list(range(n + 1))
