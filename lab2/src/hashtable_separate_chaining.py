@@ -1,6 +1,6 @@
 import sys 
 
-# time python3 src/hashtable_separate_chaining.py < data/secret/7huge.in 
+# time python3 reference.py < data/secret/7huge.in 
 
 class _Node:
     """
@@ -25,7 +25,7 @@ class HashTable:
         len(ht)          → number of pairs
 
     """
-    _UPPER_LOAD = 1.0  
+    _UPPER_LOAD = 1
     _LOWER_LOAD = 0.25
 
     # Minimum array size: never shrink below this so we don't
@@ -42,6 +42,7 @@ class HashTable:
         """
         Compute the hash value of the key and map it to a bucket index.
         """
+        #return abs(hash(key)) & (self._m - 1)
         return abs(hash(key)) % self._m         #Python's built-in hash func can return negative values, abs(hash(key)) & (self._m - 1)
     
 
@@ -128,6 +129,7 @@ class HashTable:
         self._n -= 1
         #check load factor lower bound (but keep minimum size)
         new_m = self._m // 2
+
         if (new_m >= self._MIN_SIZE and self._n / self._m < self._LOWER_LOAD):
             self._resize(new_m)
 
@@ -180,7 +182,6 @@ class HashTable:
     def __len__(self):
         return self._n
     
-
 def main():
     d = HashTable()
     i = 0
