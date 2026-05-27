@@ -1,11 +1,8 @@
-import pandas as pd
-import networkx as nx
-import os 
 import sys
 
 
 # # This code is for reading the input from a file. 
-# # I have commented it out when we run the script since the script seemd crash when we read in the files this way
+# # I have commented it out when we run the script since the script seemd to crash when we read in the files this way
 
 # base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +23,7 @@ import sys
 #     pairs.append(pair)
 
 
-# Thi code is used to read in the files when we run the script. 
+# This code is used to read in the files when we run the script. 
 # We can run the script with the command "./check_solution.sh python3 src/main.py in the terminal.
 lines = sys.stdin.readlines()
 
@@ -58,7 +55,7 @@ def BFS(graph, start, goal):
         vertex, length = queue.pop(0)
         for w in graph[vertex]:
             if visited[w] == 0:
-                visited[w] = length + 1
+                visited[w] = 1
                 queue.append((w, length + 1))
                 if w == goal:
                     print(length + 1)
