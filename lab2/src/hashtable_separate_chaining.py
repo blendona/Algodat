@@ -16,7 +16,6 @@ class HashTable:
     """
     Hash map implemented with separate chaining,
     where each bucket is a linked list of key-value pairs.
-    #TODO  ######################## MAYBE DELETE ######################### 
         ht[key]          → get value (raises KeyError if missing)
         ht[key] = value  → insert or update
         del ht[key]      → delete (raises KeyError if missing)
@@ -29,7 +28,6 @@ class HashTable:
     _UPPER_LOAD = 1.0  
     _LOWER_LOAD = 0.25
 
-    #TODO only expanitory for Petter, maybe delete afterwards
     # Minimum array size: never shrink below this so we don't
     # thrash on tiny tables (resizing often, shrinking and growing).
     _MIN_SIZE = 1
@@ -183,22 +181,6 @@ class HashTable:
         return self._n
     
 
-    #TODO delete afterward
-    # -----------------------------------------------------------
-    # Debug helper – useful during development 
-    # -----------------------------------------------------------
-    def _debug_print(self):
-        print(f"  m={self._m}, n={self._n}, α={self._n/self._m:.2f}")
-        for i, head in enumerate(self._table):
-            if head is not None:
-                chain = []
-                curr = head
-                while curr:
-                    chain.append(f"({curr.key!r}:{curr.value})")
-                    curr = curr.next
-                print(f"  [{i}] -> " + " -> ".join(chain))
-
-
 def main():
     d = HashTable()
     i = 0
@@ -206,9 +188,6 @@ def main():
     for line in sys.stdin:
         word = line.strip()
 
-        #TODO delete this statement?
-        #if not word:
-        #    continue
 
         is_present = word in d        #uses __contains__
         remove_it  = (i % 16 == 0)
