@@ -1,6 +1,7 @@
 import sys
 
 
+
 def main():
     data = sys.stdin.read().split('\n')
     idx = 0
@@ -47,6 +48,7 @@ def main():
                 gap_in_y = gap_cost + row_prev[j]     # X keeps X[i-1], '*' in Y
                 row_i[j] = match if match >= gap_in_x and match >= gap_in_y \
                     else (gap_in_x if gap_in_x >= gap_in_y else gap_in_y)
+                
 
         # Traceback from (m, n) to reconstruct the aligned strings
         aligned_x, aligned_y = [], []
