@@ -219,7 +219,7 @@ def main():
 
     removed_routes = low
 
-    # Now compute the actual final max-flow without stopping at C.
+    # Now compute the actual final max-flow
     final_flow = compute_flow(
         n,
         routes,
@@ -230,6 +230,6 @@ def main():
 
     print(removed_routes, final_flow)
 
-# TODO remove early stopping condition, not used/needed!
+
 if __name__ == "__main__":
     main()
