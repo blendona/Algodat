@@ -1,0 +1,9 @@
+Solution is iterative
+
+O(k^2 + Q * (M*N))
+
+O(3^(m+n))
+
+Align DNA, image analysis with pixel, spell checking
+
+Missing/extra letter
